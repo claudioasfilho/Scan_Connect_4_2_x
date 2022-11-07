@@ -158,6 +158,7 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
 {
   sl_status_t sc;
   uint8_t	connection_handle;
+  uint32_t Temperature;
   //bd_addr address;
   //uint8_t address_type;
   //uint8_t system_id[8];
@@ -262,7 +263,10 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
     sc = sl_bt_gatt_send_characteristic_confirmation(connection_handle);
     app_assert_status(sc);
 
-    app_log("Temp Data received %x \n\r", evt->data.evt_gatt_characteristic_value.value.data[0]);
+    //Temperature = evt->data.evt_gatt_characteristic_value.value.data[0] | evt->data.evt_gatt_characteristic_value.value.data[1]>>8 | ;
+
+
+    app_log("Temp Data received %xs \n\r", evt->data.evt_gatt_characteristic_value.value.data);
 
     break;
 
