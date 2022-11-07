@@ -1,6 +1,6 @@
-# SoC - Simple Bluetooth Scanner
+# SoC - Scan and Connect
 
-The Bluetooth example is a Simple Bluetooth Scanner used in conjuction with an EFR32 configured in NCP mode that prints out all the advertisements it sees. 
+The Bluetooth Host example is intended to be used with a 4.2.x Bluetooth NCP. It will scan and connect to a device that hosts the Health Thermometer Example from Simplicity Studio, discover its service and subscribe to notifications. 
 
 
 **Other details:**
