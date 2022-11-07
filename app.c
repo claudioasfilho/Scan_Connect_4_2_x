@@ -245,10 +245,25 @@ void sl_bt_on_event(sl_bt_msg_t *evt)
     
     case sl_bt_evt_system_soft_timer_id:
 
-    sc = sl_bt_gatt_discover_primary_services(connection_handle); //sl_bt_gatt_discover_primary_services(evt->data.evt_connection_parameters.connection);
-       app_log(" Softimer SC=  %x \n\r", sc);
-    app_assert_status(sc);
+
+    if(evt->data.evt_system_soft_timer.handle == 0xaa)
+    {
+      // sc = sl_bt_gatt_discover_primary_services(connection_handle); //sl_bt_gatt_discover_primary_services(evt->data.evt_connection_parameters.connection);
+      //    app_log(" Softimer SC=  %x \n\r", sc);
+      // app_assert_status(sc);
+        sc = sl_bt_gatt_set_characteristic_notification(connection_handle, 24, 2);
+        app_assert_status(sc);
+    }
     
+    break;
+
+    case sl_bt_evt_gatt_characteristic_value_id:
+
+    sc = sl_bt_gatt_send_characteristic_confirmation(connection_handle);
+    app_assert_status(sc);
+
+    app_log("Temp Data received %x \n\r", evt->data.evt_gatt_characteristic_value.value.data[0]);
+
     break;
 
     case sl_bt_evt_gatt_procedure_completed_id:
